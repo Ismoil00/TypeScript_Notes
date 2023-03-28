@@ -37,13 +37,3 @@ let users: TupleOne = ["ismoil", "married", 24];
 users.push(10);
 
 console.log(users); // this is considered to be a gap using typescript so far!!!
-
-// Tutorial with Dave 28-03-2023
-type Git = (string | number)[];
-type obd = {
-  name?: string;
-  age: number;
-  address: Git;
-};
-
-type subtracttion = ( num1: number, num2: number ) => number;
