@@ -28,7 +28,6 @@ class Users {
   set setEmail(newEmail: string) {
     if (this.email === newEmail) {
       throw new Error("this email already exits!");
-      return;
     }
     this.email = newEmail;
   }
