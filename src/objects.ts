@@ -78,3 +78,57 @@ console.log(customer?.birthday.getFullYear());
 // * this function runs only when the return is not null;
 let log: any = null;
 log?.(10);
+
+// || Index Signatures & keyof Assertion:
+interface TransactionType {
+  // * index signature:
+  readonly [index: string]: number | string;
+  pizza: number;
+  pasta: number;
+  25: string;
+}
+
+const Transactions: TransactionType = {
+  pizza: 10,
+  pasta: 20,
+  25: "30",
+  index: 50,
+};
+
+// * Index Signatures help us to escape problems with "Dynamic Object Props":
+const allTransactions = (): number => {
+  let total = 0;
+  for (let transaction in Transactions) {
+    total += Transactions[transaction] as number;
+  }
+  return total;
+};
+
+// * with index signature we encounter another problem:
+let firstKey = Transactions["Ismoil"]; // we don't have this key, but excepts it!
+
+// * solving the same "Dynamic Object Props" with "as keyof assertion":
+interface Student {
+  // [key: string]: string | number | string[] | undefined;
+  name: string;
+  GPA: number;
+  classes?: string[];
+}
+
+const student: Student = {
+  name: "Ismoil",
+  GPA: 3.75,
+  classes: ["Algebra", "Geology"],
+};
+
+for (let key in student) {
+  console.log(`${key}: ${student[key as keyof Student]}`);
+}
+
+Object.keys(student).map((key) => {
+  console.log(`${key}: ${student[key as keyof typeof student]}`);
+});
+
+const ConsoleStudent = (student: Student, key: keyof Student) => {
+  console.log(`${key}: ${student[key]}`);
+};
