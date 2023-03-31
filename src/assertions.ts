@@ -22,3 +22,15 @@ const img2 = document.getElementById("img") as HTMLImageElement
 
 img1.src
 img2.src
+
+// || as const:
+// * "as const" makes it constant and uneditable!
+const names = ["ismoil", "somon"] as const;
+// names.push("umed")
+
+const constObj = {
+  subject :"math",
+  price: 2500,
+  valuable: true,
+} as const;
+// constObj.subject = "Algebra";
